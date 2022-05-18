@@ -7,30 +7,30 @@ const CLEAN_COMENT = 'CLEAN_ADD'
 // actions
 const actionAddComent = (value) => {
   return {
-    type: ADD_COMENT,
-    payload
+    type: ADD_COMENT
+    // payload
   }
 }
 
 const aproveComent = (value) => {
   return {
-    type: DELETE_COMENT,
-    payload
+    type: DELETE_COMENT
+    // payload
   }
 }
 
 const deleteComent = (value) => {
   return {
-    type: APROVE_COMENT,
-    payload
+    type: APROVE_COMENT
+    // payload
   }
 }
 
 
 const cleanComents = (value) => {
   return {
-    type: CLEAN_COMENT,
-    payload
+    type: CLEAN_COMENT
+    // payload
   }
 }
 

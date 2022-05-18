@@ -6,6 +6,7 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
+  outline: none;
 }
 
 body {
@@ -71,19 +72,4 @@ body {
  border: 1px solid;
  box-shadow: rgba(0, 0, 0, .8);
  cursor: pointer;
-}
-
-
-/* componente dados clientes */
-
-.clientes {
-/*  */
-}
-
-.clientes__container {
-/*  */
-}
-
-.clientes__tabela {
-/*  */
 }

@@ -1,11 +1,19 @@
 import React from 'react'
 import Coment from './Coment'
+import { connect } from 'react-redux'
+import { actionAddComent, aproveComent, deleteComent, cleanComents } from './Redux/Actions/ComentsActions'
 
-const Coments = () => {
+const Coments = (props) => {
+
+  console.log("props -> ", props)
 
   const insereComentario = () => {
-    return console.log("Saida da função insereComentario-> OK");
+    // return console.log("Saida da função insereComentario-> OK");
+    props.dispatch(deleteComent());
   }
+
+  console.log("props after -> ", props)
+
 
   return(
     <div className='app__container'>
@@ -19,4 +27,11 @@ const Coments = () => {
   )
 }
 
-export default Coments
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    coments: state.coments
+  }
+}
+
+export default connect(mapStateToProps)(Coments)
