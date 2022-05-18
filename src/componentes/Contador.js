@@ -1,26 +1,28 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { incrementAction, decrementAction, cleanAction } from './Redux/Actions/Action'
 
 import './Contador.css'
 
-const Contador = () => {
+const Contador = (props) => {
 
-  const [valor, setValor] = useState(0);
-
-  const incrementaValor = () => {
-    setValor(valor + 1);
-  }
-
-  const decrementaValor = () => {
-    setValor(valor - 1);
-  }
+  // const [valor, setValor] = useState(() => 0);
 
   return(
     <div className='contador__container'>
-      <button className='contador__btn' onClick={incrementaValor}>Incrementar: </button>
-      <button className='contador__btn' onClick={decrementaValor}>Decrementar: </button>
-      <h3>Contador: {valor}</h3>
+    <button className='contador__btn' onClick={() => props.dispatch({ type: count + 1 })}>Incrementar: </button>
+    <button className='contador__btn' onClick={() => props.dispatch({ type: count - 1 })}>Decrementar: </button>
+    <button className='contador__btn' onClick={() => props.dispatch({ type: count * 1 })}>Limpar: </button>
+    <h3>Contador: {count}</h3>
     </div>
   )
 }
 
-export default Contador
+const mapStateToProps = (count) => {
+  console.log("skjdlkasjdlksa", count);
+  return {
+    count: count
+  }
+}
+
+export default connect(mapStateToProps)(Contador);
