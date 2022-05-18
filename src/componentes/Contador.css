@@ -1,0 +1,23 @@
+.contador {
+/*  */
+}
+
+.contador__container {
+  text-align: center;
+/*  */
+}
+
+.contador__tabela {
+/*  */
+}
+
+ .contador__btn {
+   padding: 10px 15px;
+   margin: 10px;
+   color: white;
+   background-color: lime;
+   border-radius: 3px;
+   border: 1px solid;
+   box-shadow: rgba(0, 0, 0, .8);
+   cursor: pointer;
+ }
