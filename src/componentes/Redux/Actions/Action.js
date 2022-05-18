@@ -1,9 +1,9 @@
 import React from 'react'
 
 // CONSTANT DECLARATION
-const INCREMENT = 'INCREMENT'
-const DECREMENT = 'DECREMENT'
-const CLEAN = 'CLEAN'
+export const INCREMENT = 'INCREMENT'
+export const DECREMENT = 'DECREMENT'
+export const CLEAN = 'CLEAN'
 
 // Actions
 export const incrementAction = () => ({

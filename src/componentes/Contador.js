@@ -8,20 +8,22 @@ const Contador = (props) => {
 
   // const [valor, setValor] = useState(() => 0);
 
+  console.log("$$$fdsfdsfd", props)
+
   return(
     <div className='contador__container'>
-    <button className='contador__btn' onClick={() => props.dispatch({ type: count + 1 })}>Incrementar: </button>
-    <button className='contador__btn' onClick={() => props.dispatch({ type: count - 1 })}>Decrementar: </button>
-    <button className='contador__btn' onClick={() => props.dispatch({ type: count * 1 })}>Limpar: </button>
-    <h3>Contador: {count}</h3>
+    <button className='contador__btn' onClick={() => props.dispatch(incrementAction)}>Incrementar: </button>
+    <button className='contador__btn' onClick={() => props.dispatch(decrementAction)}>Decrementar: </button>
+    <button className='contador__btn' onClick={() => props.dispatch(cleanAction)}>Limpar: </button>
+    <h3>Contador: {props.state.count}</h3>
     </div>
   )
 }
 
-const mapStateToProps = (count) => {
-  console.log("skjdlkasjdlksa", count);
+const mapStateToProps = (state) => {
+  console.log("skjdlkasjdlksa", state.count);
   return {
-    count: count
+    state: state.count
   }
 }
 

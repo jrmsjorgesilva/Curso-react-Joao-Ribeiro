@@ -1,22 +1,23 @@
 import React from 'react'
+import { INCREMENT, DECREMENT, CLEAN } from '../Actions/Action'
 
 const initialCount = {
   count: 0
 }
 
-const Reducer = (state = initialCount, action) => {
+function Reducer(state = initialCount, action) {
   switch (action.type) {
-    case 'INCREMENT':
-      return { state: state + 1 }
+    case INCREMENT:
+      return { count: state + 1 }
       break;
-    case 'DECREMENT':
-      return { state: state - 1 }
+    case DECREMENT:
+      return { count: state - 1 }
       break;
-    case 'CLEAN':
-      return { state: state * 1 }
+    case CLEAN:
+      return { count: state * 1 }
       break;
     default:
-
+      return state;
   }
 }
 
