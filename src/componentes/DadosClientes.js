@@ -1,7 +1,5 @@
 import React from 'react'
 
-import './DadosClientes.css'
-
 import dadosClientes from '../dadosClientes/dadosClientes'
 
 const DadosClientes = () => {

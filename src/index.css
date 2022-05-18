@@ -17,3 +17,73 @@ body {
   justify-content: center;
   height: 100vh;
 }
+
+/* comentarios */
+
+.app__input {
+  padding: 10px 15px;
+}
+
+.app__container {
+  width: 500px;
+  padding: 20px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+}
+
+.app__title {
+  font-size: 1.5em;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.app__text {
+  font-size: 1em;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.app__coment__autor {
+  font-size: .8em;
+  text-align: right;
+}
+
+
+/* seçãoi contador */
+
+.contador {
+/*  */
+}
+
+.contador__tabela {
+/*  */
+}
+
+.app__btn {
+ padding: 10px 15px;
+ margin: 10px;
+ color: white;
+ background-color: lime;
+ border-radius: 3px;
+ border: 1px solid;
+ box-shadow: rgba(0, 0, 0, .8);
+ cursor: pointer;
+}
+
+
+/* componente dados clientes */
+
+.clientes {
+/*  */
+}
+
+.clientes__container {
+/*  */
+}
+
+.clientes__tabela {
+/*  */
+}
