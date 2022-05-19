@@ -12,6 +12,7 @@ const Invertexto = ({ text, dispatch }) => {
     console.log("fsdfsdf", text.text)
   }
 
+
   console.log("Arrocha", text)
 
 
