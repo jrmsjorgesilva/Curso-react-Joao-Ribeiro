@@ -1,19 +1,19 @@
 // initializer
 const INITIAL_COMENTS = {
-  stateComent: ''
+  coment: 'Nenhum Comentário'
 }
 
 // reducer
 function ComentsReducer(state = INITIAL_COMENTS, action) {
   switch (action.type) {
     case 'ADD_COMENT':
-      return { stateComent: 'Adicionar comentário' }
+      return { coment: 'Adicionar comentário' }
     case 'DELETE_COMENT':
-      return { stateComent: 'Deletar comentário' }
+      return { coment: 'Deletar comentário' }
     case 'APROVE_COMENT':
-      return { stateComent: 'Aprovar comentário' }
+      return { coment: 'Aprovar comentário' }
     case 'CLEAN_COMENT':
-      return { stateComent: 'Limpar todos os comentários' }
+      return { coment: 'Limpar todos os comentários' }
       break;
     default:
       return state

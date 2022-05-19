@@ -1,19 +1,20 @@
 import React from 'react'
 import Coment from './Coment'
-import { connect } from 'react-redux'
-import { actionAddComent, aproveComent, deleteComent, cleanComents } from './Redux/Actions/ComentsActions'
+import { connect, useSelector, useDispatch } from 'react-redux'
+import { actionAddComent, aproveComent, deleteComent, cleanComent } from './Redux/Actions/ComentsActions'
 
-const Coments = (props) => {
+const Coments = () => {
 
-  console.log("props -> ", props)
+  const coment = useSelector(state => state.ComentsReducer.coment);
+
+  console.log("coment -> ", coment)
+
+  const dispatch = useDispatch();
 
   const insereComentario = () => {
     // return console.log("Saida da função insereComentario-> OK");
-    props.dispatch(deleteComent());
+    console.log("Comentario deletado -> ", dispatch(deleteComent()));
   }
-
-  console.log("props after -> ", props)
-
 
   return(
     <div className='app__container'>
@@ -21,17 +22,18 @@ const Coments = (props) => {
       <br />
       <input className='app__input' type="text" placeholder="autor" />
       <input className='app__input' type="text" placeholder="Diga o que está pensando" />
-      <button className='app__btn' onClick={() => insereComentario()}>Enviar</button>
+      <button className='app__btn' onClick={() => dispatch(deleteComent())}>Enviar</button>
       <Coment title='titulo 1' text='texto 1' autor='autor 1'/>
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-    coments: state.coments
-  }
-}
+// const mapStateToProps = (state) => {
+//   console.log(state)
+//   return {
+//     coments: state.coments
+//   }
+// }
 
-export default connect(mapStateToProps)(Coments)
+// export default connect(mapStateToProps)(Coments)
+export default Coments

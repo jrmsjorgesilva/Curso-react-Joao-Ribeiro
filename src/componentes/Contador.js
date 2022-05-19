@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 import { incrementAction, decrementAction, cleanAction } from './Redux/Actions/CounterActions'
 
-const Contador = (props) => {
+const Contador = () => {
 
   // const counter = useSelector(props.count);
   // console.log("$counter->", counter);
@@ -13,16 +13,22 @@ const Contador = (props) => {
 
   // const [valor, setValor] = useState(() => 0);
 
+  const count = useSelector(state => state.ContadorReducer.count);
+
+  console.log("CONTADOR:", count)
+
+  const dispatch = useDispatch();
+
   const incrementaValor = () => {
-    props.dispatch(incrementAction());
+    dispatch(incrementAction());
   }
 
   const decrementaValor = () => {
-    props.dispatch(decrementAction());
+    dispatch(decrementAction());
   }
 
   const limpaValor = () => {
-    props.dispatch(cleanAction());
+    dispatch(cleanAction());
   }
 
   return(
@@ -30,15 +36,16 @@ const Contador = (props) => {
     <button className='app__btn' onClick={() => incrementaValor()}>Incrementar: </button>
     <button className='app__btn' onClick={() => decrementaValor()}>Decrementar: </button>
     <button className='app__btn' onClick={() => limpaValor()}>Limpar: </button>
-    <h3>Contador: {props.count}</h3>
+    <h3>Contador: {count}</h3>
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    count: state.count
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     count: state.count
+//   }
+// }
 
-export default connect(mapStateToProps)(Contador);
+// export default connect(mapStateToProps)(Contador);
+export default Contador;
