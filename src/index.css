@@ -22,11 +22,12 @@ body {
 /* comentarios */
 
 .app__input {
+  min-width: 200px;
   padding: 10px 15px;
 }
 
 .app__container {
-  width: 500px;
+  min-width: 500px;
   padding: 20px;
   margin: 5px;
   border: 1px solid black;

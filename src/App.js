@@ -2,6 +2,7 @@ import React from 'react'
 import Coments from './componentes/Coments'
 import DadosClientes from './componentes/DadosClientes'
 import Contador from './componentes/Contador'
+import Invertexto from './componentes/Invertexto'
 
 const App = () => {
   return(
@@ -9,6 +10,7 @@ const App = () => {
       <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>
         Seção de comentários
       </h1>
+      <Invertexto />
       <Coments />
       <Contador />
       <DadosClientes />
