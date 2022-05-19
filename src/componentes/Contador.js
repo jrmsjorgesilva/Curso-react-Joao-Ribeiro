@@ -1,17 +1,7 @@
-import React, { useState } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 import { incrementAction, decrementAction, cleanAction } from './Redux/Actions/CounterActions'
 
 const Contador = () => {
-
-  // const counter = useSelector(props.count);
-  // console.log("$counter->", counter);
-  //
-  // const dispatch = useDispatch();
-  // console.log("$dispatch->", dispatch);
-  // console.log("$dispatch->dsadasd");
-
-  // const [valor, setValor] = useState(() => 0);
 
   const count = useSelector(state => state.ContadorReducer.count);
 

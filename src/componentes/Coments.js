@@ -12,7 +12,6 @@ const Coments = () => {
   const dispatch = useDispatch();
 
   const insereComentario = () => {
-    // return console.log("Saida da função insereComentario-> OK");
     console.log("Comentario deletado -> ", dispatch(deleteComent()));
   }
 
