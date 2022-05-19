@@ -4,7 +4,7 @@ import { actionConfirm, actionReject } from './Redux/Actions/CardsActions'
 
 const Card = () => {
 
-  const status = useSelector(state => state.status);
+  const status = useSelector(state => state.CardsReducer.status);
 
   const dispatch = useDispatch();
 

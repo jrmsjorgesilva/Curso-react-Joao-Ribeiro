@@ -1,19 +1,21 @@
 import React from 'react'
 import { useState } from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector, useDispatch } from 'react-redux'
 import { actionInvertexto } from './Redux/Actions/InvertextoActions'
 
-const Invertexto = ({ text, dispatch }) => {
+const Invertexto = () => {
 
   // const [text, setText] = useState(() => '');
+  const text = useSelector(state => state.InvertextoReducer.text);
+
+  console.log("INVERTEXTO REDUCER TEXT (USE SELECTOR)", text);
+
+  const dispatch = useDispatch();
 
   const escreveTexto = (e) => {
     // setText(e.target.value);
-    console.log("fsdfsdf", text.text)
+    console.log("fsdfsdf", text)
   }
-
-
-  console.log("Arrocha", text)
 
 
   return(
@@ -24,12 +26,12 @@ const Invertexto = ({ text, dispatch }) => {
           className='app__input'
           type="text"
           placeholder="Digite o texto a ser invertido"
-          value={text.text}
+          value={text}
           onChange={(e) => escreveTexto(e)}
         />
         <button className='app__btn' onClick={() => dispatch(actionInvertexto())}>Despachar</button>
         <span style={{ margin: '0px 25px' }}>
-          {text.text}
+          {text}
         </span>
       </p>
 
@@ -37,4 +39,5 @@ const Invertexto = ({ text, dispatch }) => {
   )
 }
 
-export default connect(state => ({ text: state }))(Invertexto)
+// export default connect(state => ({ text: state }))(Invertexto)
+export default Invertexto
