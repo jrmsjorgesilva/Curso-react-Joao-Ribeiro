@@ -31,9 +31,15 @@ const FetchApp = () => {
     .then(response => {
       // setData(response.data);
       setData(JSON.stringify(response.data));
+      // let colectionData = '';
+      // Object.entries(response.data).forEach(([key, value]) => {
+      //   colectionData += (JSON.stringify(key) + ': ' + JSON.stringify(value));
+      // });
+      // setData(colectionData);
       setError(null);
     }, error => {
       setError(error);
+      alert(error);
     });
 
   }
