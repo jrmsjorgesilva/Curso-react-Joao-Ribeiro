@@ -8,10 +8,12 @@ const Card = () => {
 
   const dispatch = useDispatch();
 
+  const imgSrc = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD1JyxEJa6z39mKPfGVr6mew5dM1fU-PROrXIzk9GGEj4ThZLNkyD1TAEFBMMb9XWCOhE&usqp=CAU'
+
   return(
     <>
       <img
-        src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD1JyxEJa6z39mKPfGVr6mew5dM1fU-PROrXIzk9GGEj4ThZLNkyD1TAEFBMMb9XWCOhE&usqp=CAU'
+        src={imgSrc}
         alt='flyer do evento'
       />
       <h5>Este é um card</h5>
