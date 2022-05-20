@@ -4,6 +4,7 @@ import DadosClientes from './componentes/DadosClientes'
 import Contador from './componentes/Contador'
 import Invertexto from './componentes/Invertexto'
 import Cards from './componentes/Cards'
+import FetchApp from './componentes/FetchApp'
 // IMPORTS REDUX
 import { Provider } from 'react-redux'
 import store from './componentes/Redux/Store/Store'
@@ -15,6 +16,7 @@ const App = () => {
       Seção de comentários
     </h1>
       <Provider store={store} >
+        <FetchApp />
         <Cards />
         <Invertexto />
         <Coments />
