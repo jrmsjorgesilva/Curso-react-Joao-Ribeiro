@@ -9,6 +9,17 @@
   outline: none;
 }
 
+#root {
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+
+}
+
 body {
   font-family: verdana, sans-serif;
   background-color: rgba(240, 222, 144, .9);
@@ -91,6 +102,9 @@ body {
   text-align: right;
 }
 
+.app__nav__item {
+  margin: 0px 30px;
+}
 
 /* seçãoi contador */
 

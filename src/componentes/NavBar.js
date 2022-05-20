@@ -1,40 +1,61 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, useParams, useNavigate } from 'react-router-dom'
 
 const NavBar = () => {
 
+  const navigate = useNavigate();
+  const params = useParams();
+
   return(
-    <nav>
-      <ul style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', margin: '10px' }}>
+    <nav >
+      <ul style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', margin: '50px 10px' }}>
         <li>
-          <Link to='/'>
+          <NavLink
+            to='/'
+            className='app__nav__item'
+          >
             Home
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to='/cards'>
+          <NavLink
+            to='/cards'
+            className='app__nav__item'
+          >
             Cards
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to='/comments'>
+          <NavLink
+            to='/comments'
+            className='app__nav__item'
+          >
             Comments
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to='/invertexto'>
+          <NavLink
+            to='/invertexto'
+            className='app__nav__item'
+          >
             Invertexto
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to='/contador'>
+          <NavLink
+            to='/contador'
+            className='app__nav__item'
+          >
             Contador
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to='/dadosclientes'>
+          <NavLink
+            to='/dadosclientes'
+            className='app__nav__item'
+          >
             Dados
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </nav>
