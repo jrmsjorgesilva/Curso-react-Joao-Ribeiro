@@ -6,6 +6,7 @@ import Invertexto from './componentes/Invertexto'
 import Cards from './componentes/Cards'
 import FetchApp from './componentes/FetchApp'
 import Page404 from './componentes/Page404'
+import TodoApp from './componentes/TodoApp/TodoApp'
 import NavBar from './componentes/NavBar'
 // IMPORTS REDUX
 import { Provider } from 'react-redux'
@@ -24,6 +25,11 @@ const App = () => {
 
             <Route
               path='/'
+              element={<TodoApp />}
+            >
+            </Route>
+            <Route
+              path='/fetchapp'
               element={<FetchApp />}
             >
             </Route>

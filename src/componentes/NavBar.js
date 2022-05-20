@@ -19,6 +19,14 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
+            to='/fetchapp'
+            className='app__nav__item'
+          >
+            Fetch
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to='/cards'
             className='app__nav__item'
           >

@@ -1,0 +1,22 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Aprender React",
+      "date": '22/11/1987',
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "title": "Aprender React",
+      "date": '22/11/1987',
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "title": "Aprender React",
+      "date": '22/11/1987',
+      "status": "pending"
+    },
+  ]
+}
