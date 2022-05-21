@@ -25,21 +25,21 @@ const Todo = ({ handleDelete, handleUpdate, todo }) => {
                 size='small'
                 variant='outlined'
                 style={{ marginLeft: '20px', width: '80'}}
-                color={todo.status === 'pending' ? 'error' : 'success'}
+                color={todo.status === 'Pendente' ? 'error' : 'success'}
               />
             </>
           }
         />
         <Chip
           title="Edit Todo"
-          label="Update"
+          label="Editar"
           color="primary"
           style={{ width: 100, cursor: 'pointer'}}
           onClick={() => handleUpdate(todo.id)}
         />
         <Chip
           title="Delete Todo"
-          label="Delete"
+          label="Deletar"
           color="warning"
           style={{ width: 100, cursor: 'pointer'}}
           onClick={() => handleDelete(todo.id)}

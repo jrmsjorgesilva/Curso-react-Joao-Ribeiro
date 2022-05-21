@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavLink, useParams, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import {
   AppBar,
   Box,
@@ -12,7 +12,8 @@ import {
   Button,
   Tooltip,
   MenuItem
-} from '@mui/material'
+} from '@mui/material';
+import { FaUserAstronaut } from 'react-icons/fa';
 
 const NavBar = () => {
 
@@ -22,16 +23,16 @@ const NavBar = () => {
   // MUI code
 
   const pages = ['fetchapp', 'cards', 'contador', 'comments', 'dadosclientes', 'invertexto'];
-  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+  const settings = ['Sobre', 'Minha Conta', 'Configurações', 'Logout'];
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(() => null);
+  const [anchorElUser, setAnchorElUser] = useState(() => null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenNavMenu = (e) => {
+    setAnchorElNav(e.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  const handleOpenUserMenu = (e) => {
+    setAnchorElUser(e.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
@@ -62,12 +63,12 @@ const NavBar = () => {
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
-              textDecoration: 'none',
+              textDecoration: 'underline',
             }}
           >
-            LOGO
+            LOG
+            <FaUserAstronaut style={{ marginTop: '8px'}} />
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -78,6 +79,7 @@ const NavBar = () => {
               color="inherit"
             >
               {/*<MenuIcon />*/}
+              <FaUserAstronaut />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -97,13 +99,13 @@ const NavBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+              {settings.map((setting) => (
                 <NavLink
-                  key={page}
-                   to={`/${page}`}
+                  key={setting}
+                   to={`/${setting}`}
                    className='app__nav__item'
                  >
-                   {page.toUpperCase()}
+                   {setting}
                  </NavLink>
               ))}
             </Menu>
@@ -128,21 +130,14 @@ const NavBar = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
+            {/*{settings.map((setting) => (
               <NavLink
-                key={page}
-                 to={`/${page}`}
+                 to={`/${setting}`}
                  className='app__nav__item'
                >
-                 {page.toUpperCase()}
+                 {setting}
                </NavLink>
-              </Button>
-            ))}
+            ))}*/}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -167,9 +162,15 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseUserMenu}>
+                  <NavLink
+                     key={page}
+                     to={`/${page}`}
+                     className='app__nav__item'
+                   >
+                     <Typography textAlign="center">{page}</Typography>
+                   </NavLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -177,67 +178,6 @@ const NavBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
-    // <nav >
-    //   <ul style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', margin: '50px 10px' }}>
-    //     <li>
-    //       <NavLink
-    //         to='/'
-    //         className='app__nav__item'
-    //       >
-    //         Home
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink
-    //         to='/fetchapp'
-    //         className='app__nav__item'
-    //       >
-    //         Fetch
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink
-    //         to='/cards'
-    //         className='app__nav__item'
-    //       >
-    //         Cards
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink
-    //         to='/comments'
-    //         className='app__nav__item'
-    //       >
-    //         Comments
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink
-    //         to='/invertexto'
-    //         className='app__nav__item'
-    //       >
-    //         Invertexto
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink
-    //         to='/contador'
-    //         className='app__nav__item'
-    //       >
-    //         Contador
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink
-    //         to='/dadosclientes'
-    //         className='app__nav__item'
-    //       >
-    //         Dados
-    //       </NavLink>
-    //     </li>
-    //   </ul>
-    // </nav>
-
   )
 }
 
