@@ -11,6 +11,7 @@ import Slides from './componentes/Slides'
 import NavBar from './componentes/NavBar'
 import SocialWidget from './componentes/SocialWidget'
 import Feira from './componentes/Feira'
+import Fixit from './componentes/Fixit'
 import Footer from './componentes/Footer'
 // IMPORTS REDUX
 import { Provider } from 'react-redux'
@@ -70,6 +71,11 @@ const App = () => {
             <Route
               path='/feira'
               element={<Feira />}
+            >
+            </Route>
+            <Route
+              path='/fixit'
+              element={<Fixit />}
             >
             </Route>
             <Route

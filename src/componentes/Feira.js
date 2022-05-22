@@ -1,16 +1,43 @@
 import React, { useState } from 'react'
-import { Box, TextField, Badge, Fab } from '@mui/material';
+import { Box, TextField, Badge, Fab, Chip, Avatar } from '@mui/material';
 import { FaPlus, FaTrash, FaCheck, FaEdit, FaCog } from 'react-icons/fa';
 
 
 const Feira = () => {
 
-  const [frutas, setFrutas] = useState(() => []);
-  const [newFruta, setNewFruta] = useState(() => []);
+  const [frutas, setFrutas] = useState(() => [
+    {
+      id: 1,
+      name: 'goiaba',
+    },
+    {
+      id: 2,
+      name: 'banana',
+    },
+    {
+      id: 3,
+      name: 'abacaxi',
+    }
+  ]);
+
+  console.log("FRUTAS", frutas);
+
+  const [newFrutas, setNewFrutas] = useState(() => [{}]);
 
   const addFrutas = () => {
-    const acc = [...newFruta]
-    setNewFruta([acc, frutas]);
+    console.log("FRUTAS", frutas);
+    console.log("NEWFRUTAS", newFrutas);
+    console.log("...FRUTAS", ...frutas);
+    console.log("...NEWFRUTAS", ...newFrutas);
+    const addNewfruta = {
+      id: Math.floor(Math.Random() * 10000),
+      name: newFrutas
+    }
+    setFrutas([...frutas, { id: 4, name: 'fdjfnjdfndjf' }]);
+  }
+
+  const newID = () => {
+    return Math.floor(Math.Random() * 10000);
   }
 
   return(
@@ -26,8 +53,9 @@ const Feira = () => {
         <TextField
           id="outlined-basic"
           label="Fruta"
-          variant="outlined" sx={12}
-          onChange={(e) => setFrutas(e.target.value)}
+          variant="outlined"
+          sx={12}
+          onChange={(e) => setNewFrutas([e.target.value])}
         />
         <Fab
           aria-label="add"
@@ -36,12 +64,32 @@ const Feira = () => {
             width: '55px',
             height: '55px',
             backgroundColor: 'lime',
-            color: 'white'
+            color: 'white',
           }}
         >
           <FaPlus />
         </Fab>
-        <p>{newFruta}</p>
+        <ul>
+          {
+              frutas.map(f =>
+                <>
+                  <Chip
+                    key={f.id}
+                    label={f.name}
+                    variant="outlined"
+                    color="secondary"
+                    size="large"
+                    avatar={<Avatar>F</Avatar>}
+                  />
+                </>
+              )
+          }
+
+        </ul>
+
+        <p>
+
+        </p>
       </Box>
     </div>
   )

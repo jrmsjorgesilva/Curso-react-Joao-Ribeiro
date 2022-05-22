@@ -4,6 +4,7 @@ import ContadorReducer from '../Reducers/CounterReducer'
 import InvertextoReducer from '../Reducers/InvertextoReducer'
 import CardsReducer from '../Reducers/CardsReducer'
 import TodoReducer from '../Reducers/TodoReducer'
+import FixitReducer from '../Reducers/FixitReducer'
 
 const store = createStore(combineReducers(
   {
@@ -12,6 +13,7 @@ const store = createStore(combineReducers(
     CardsReducer,
     InvertextoReducer,
     TodoReducer,
+    FixitReducer,
   }
 ));
 
