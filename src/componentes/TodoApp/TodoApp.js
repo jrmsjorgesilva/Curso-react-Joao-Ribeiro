@@ -1,45 +1,35 @@
 import React from 'react'
-import { ListItem, ListItemText, Chip } from '@mui/material';
-import { useState, useEffect } from 'react'
+import { Chip } from '@mui/material';
+import { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import todoList from './Data/db.js'
 import Todo from './Todo'
-// import TodoForm from './TodoForm'
+import TodoForm from './TodoForm'
+import { deleteAction } from "../Redux/Actions/TodoActions";
 
 const TodoApp = () => {
 
   const [open, setOpen] = useState(false);
-    const [updateData, setUpdateData] = useState(null);
-    // const todos = useSelector((state) => state.todos);
-    const dispatch = useDispatch();
-  const [todos, setTodos] = useState(() => todoList);
-
-  const handleUpdate = (id) => {
-    // const getTodoById = todos.filter((elem) => elem.id === id);
-    // console.log("getTodoById->", getTodoById);
-    // const getNewTodo = handleOpen();
-    // todos.map(todo => {
-    //   todo === todo.id ? todo = getNewTodo : null
-    // })
-  }
+  const [updateData, setUpdateData] = useState(null);
+  const todos = useSelector((state) => state.TodoReducer.todos);
+  const dispatch = useDispatch();
 
   const handleOpen = () => {
-    console.log(todos);
-  }
+    setOpen(true);
+  };
 
   const handleClose = () => {
-    console.log(todos);
-  }
-
+    setOpen(false);
+    setUpdateData(null);
+  };
 
   const handleDelete = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-    console.log(todos);
-  }
+    dispatch(deleteAction(id));
+  };
 
-  const handleChange = (id) => {
-    console.log(id);
-  }
+  const handleUpdate = (todo) => {
+    setUpdateData(todo);
+    handleOpen();
+  };
 
   return(
     <div className='app__container'>
@@ -51,15 +41,15 @@ const TodoApp = () => {
         style={{ marginLeft: 10, width: 150 }}
         color="primary"
       />
-      {/*<TodoForm
+      <TodoForm
         open={open}
         handleClose={handleClose}
         todo={updateData}
-      />*/}
+      />
       {
         todos.length > 0 ?
-        todos.map(todo =>
-          <Todo handleUpdate={handleUpdate} handleDelete={handleDelete} todo={todo}/>
+        todos.map((todo, index) =>
+          <Todo key={index} handleUpdate={handleUpdate} handleDelete={handleDelete} todo={todo}/>
         )
         : 'Não há afazeres na sua lista...'
       }
@@ -68,6 +58,4 @@ const TodoApp = () => {
   )
 }
 
-
-// export default connect(state => ({ status: state }))(Card);
 export default TodoApp;

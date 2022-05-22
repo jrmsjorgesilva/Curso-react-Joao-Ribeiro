@@ -7,7 +7,11 @@ import Cards from './componentes/Cards'
 import FetchApp from './componentes/FetchApp'
 import Page404 from './componentes/Page404'
 import TodoApp from './componentes/TodoApp/TodoApp'
+import Slides from './componentes/Slides'
 import NavBar from './componentes/NavBar'
+import SocialWidget from './componentes/SocialWidget'
+import Feira from './componentes/Feira'
+import Footer from './componentes/Footer'
 // IMPORTS REDUX
 import { Provider } from 'react-redux'
 import store from './componentes/Redux/Store/Store'
@@ -59,6 +63,16 @@ const App = () => {
             >
             </Route>
             <Route
+              path='/slides'
+              element={<Slides />}
+            >
+            </Route>
+            <Route
+              path='/feira'
+              element={<Feira />}
+            >
+            </Route>
+            <Route
               path='*'
               element={<Page404 />}
             >
@@ -66,6 +80,8 @@ const App = () => {
           </Routes>
 
         </Provider>
+
+        <Footer />
 
       </Router>
     </>

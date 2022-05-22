@@ -140,6 +140,10 @@ body {
   opacity: .8;
 }
 
+.app__btn:disabled {
+  background: #dddddd;
+}
+
 /* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
 /* ROBADO DO BOOTSTRAP: SEÇÃO DE FLEX E COLUNAS */
 /* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */

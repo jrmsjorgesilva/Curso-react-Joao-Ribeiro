@@ -1,7 +1,5 @@
 import React from 'react'
 import { ListItem, ListItemText, Chip } from '@mui/material';
-import { useState, useEffect } from 'react'
-import todoList from './Data/db.js'
 
 const Todo = ({ handleDelete, handleUpdate, todo }) => {
 
@@ -35,7 +33,7 @@ const Todo = ({ handleDelete, handleUpdate, todo }) => {
           label="Editar"
           color="primary"
           style={{ width: 100, cursor: 'pointer'}}
-          onClick={() => handleUpdate(todo.id)}
+          onClick={() => handleUpdate(todo)}
         />
         <Chip
           title="Delete Todo"

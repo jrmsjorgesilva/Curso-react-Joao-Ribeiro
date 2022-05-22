@@ -22,7 +22,7 @@ const NavBar = () => {
 
   // MUI code
 
-  const pages = ['fetchapp', 'cards', 'contador', 'comments', 'dadosclientes', 'invertexto'];
+  const pages = ['fetchapp', 'cards', 'contador', 'comments', 'dadosclientes', 'invertexto', 'slides'];
   const settings = ['Sobre', 'Minha Conta', 'Configurações', 'Logout'];
 
   const [anchorElNav, setAnchorElNav] = useState(() => null);

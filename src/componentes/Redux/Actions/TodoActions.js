@@ -1,41 +1,36 @@
 // constantes Redux
-const DELETE = 'DELETE';
-const UPDATE = 'UPDATE';
-const CREATE = 'CREATE';
-const READ = 'READ';
+const DELETE_TODO = 'DELETE_TODO';
+const UPDATE_TODO = 'UPDATE_TODO';
+const ADD_TODO = 'ADD_TODO';
 
 // actions functions
 
-const createAction = (value) => {
+const addAction = (value) => {
   return {
-    type: CREATE,
+    type: ADD_TODO,
     payload: value
-  }
-}
-
-const readAction = () => {
-  return {
-    type: READ
   }
 }
 
 const updateAction = (value) => {
   return {
-    type: UPDATE,
+    type: UPDATE_TODO,
     payload: value
   }
 }
 
 const deleteAction = (value) => {
   return {
-    type: DELETE,
+    type: DELETE_TODO,
     payload: value
   }
 }
 
 export {
-  createAction,
-  readAction,
+  ADD_TODO,
+  DELETE_TODO,
+  UPDATE_TODO,
+  addAction,
   updateAction,
   deleteAction
 }

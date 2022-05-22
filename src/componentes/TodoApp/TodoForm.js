@@ -8,51 +8,58 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { ADD_TODO, UPDATE_TODO } from "../store/actionType";
-const STATUS = ["Pending", "Completed"];
-const initialState = { title: "", due_date: "", status: "" };
+import { addAction, updateAction } from "../Redux/Actions/TodoActions"
+const STATUS = ["Pendente", "Completa"];
+const INITIAL_TODO = { title: "", date: "", status: "" };
 
 const TodoForm = ({ open, handleClose, todo }) => {
+
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState(initialState);
-  const { title, due_date, status } = formData;
+  const [formData, setFormData] = useState(INITIAL_TODO);
+  const { title, date, status } = formData;
+
   useEffect(() => {
     if (todo) {
       setFormData(todo);
     } else {
-      setFormData(initialState);
+      setFormData(INITIAL_TODO);
     }
   }, [todo]);
+
   const handleInputChange = (e, key) => {
     const { value } = e.target;
     setFormData({ ...formData, [key]: value });
   };
+
   const resetFormData = () => {
-    setFormData(initialState);
+    setFormData(INITIAL_TODO);
   };
+
   const handleSubmit = () => {
-    dispatch({ type: ADD_TODO, payload: { id: Math.random(), ...formData } });
+    dispatch(addAction({ id: Math.random(), ...formData }));
     resetFormData();
     handleClose();
   };
+
   const hanldeUpdate = () => {
-    dispatch({ type: UPDATE_TODO, payload: formData });
+    dispatch(updateAction(formData));
     resetFormData();
     handleClose();
   };
+
   return (
     <Dialog open={open}>
-      <DialogTitle>{todo ? "Update Todo" : "Add New Todo"}</DialogTitle>
+      <DialogTitle>{todo ? "Atualizar Item Selecionado" : "Adicionar Item à Lista"}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          To create a new todo, please fill the below form
+          Preencha o formulário para criar um novo item da lista
         </DialogContentText>
         <form onSubmit={handleSubmit}>
           <TextField
             autoFocus
             margin="dense"
             id="title"
-            label="Title"
+            label="Titulo"
             value={title}
             fullWidth
             variant="standard"
@@ -62,15 +69,15 @@ const TodoForm = ({ open, handleClose, todo }) => {
           <TextField
             autoFocus
             margin="dense"
-            id="due_date"
-            value={due_date}
+            id="date"
+            value={date}
             type="date"
-            label="Due Date"
+            label="Data"
             fullWidth
             variant="standard"
             InputLabelProps={{ shrink: true }}
             required
-            onChange={(e) => handleInputChange(e, "due_date")}
+            onChange={(e) => handleInputChange(e, "date")}
           />
           <FormControl variant="standard" fullWidth required>
             <InputLabel id="status">Status</InputLabel>
@@ -82,11 +89,11 @@ const TodoForm = ({ open, handleClose, todo }) => {
               label="Status"
             >
               <MenuItem value="">
-                <em>None</em>
+                <em>Nenhum(a)</em>
               </MenuItem>
-              {STATUS.map((st) => (
-                <MenuItem key={st} value={st}>
-                  {st}
+              {STATUS.map((item) => (
+                <MenuItem key={item} value={item}>
+                  {item}
                 </MenuItem>
               ))}
             </Select>
@@ -94,11 +101,11 @@ const TodoForm = ({ open, handleClose, todo }) => {
         </form>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>Cancelar</Button>
         {todo ? (
-          <Button onClick={hanldeUpdate}>Update</Button>
+          <Button onClick={hanldeUpdate}>Atualizar</Button>
         ) : (
-          <Button onClick={handleSubmit}>Create</Button>
+          <Button onClick={handleSubmit}>Salvar</Button>
         )}
       </DialogActions>
     </Dialog>
