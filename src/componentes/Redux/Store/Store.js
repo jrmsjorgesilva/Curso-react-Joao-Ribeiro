@@ -5,6 +5,7 @@ import InvertextoReducer from '../Reducers/InvertextoReducer'
 import CardsReducer from '../Reducers/CardsReducer'
 import TodoReducer from '../Reducers/TodoReducer'
 import FixitReducer from '../Reducers/FixitReducer'
+import FeiraReducer from '../Reducers/FeiraReducer'
 
 const store = createStore(combineReducers(
   {
@@ -14,6 +15,7 @@ const store = createStore(combineReducers(
     InvertextoReducer,
     TodoReducer,
     FixitReducer,
+    FeiraReducer,
   }
 ));
 

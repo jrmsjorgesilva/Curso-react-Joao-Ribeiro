@@ -20,12 +20,10 @@ const INITIAL_FIXIT_ITEM = {
 const FixitReducer = (state = INITIAL_FIXIT_ITEM || [], action) => {
   switch (action.type) {
     case ADD_FIXIT_ITEM:
-      console.log("...state.fixitItem, action.payload", ...state.fixitItem, action.payload);
+      // console.log("...state.fixitItem, action.payload", ...state.fixitItem, action.payload);
       return { fixitItem: [...state.fixitItem, {id: Math.floor(Math.random() * 10000), name: action.payload}] }
-      break;
     case DELETE_FIXIT_ITEM:
       return {fixitItem: state.fixitItem.filter(item => item.id !== action.payload)}
-      break;
     default:
       return state;
   }

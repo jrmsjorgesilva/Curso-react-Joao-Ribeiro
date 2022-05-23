@@ -1,43 +1,16 @@
 import React, { useState } from 'react'
 import { Box, TextField, Badge, Fab, Chip, Avatar } from '@mui/material';
 import { FaPlus, FaTrash, FaCheck, FaEdit, FaCog } from 'react-icons/fa';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { addFrutaAction, deleteFrutaAction } from './Redux/Actions/FeiraActions'
 
 const Feira = () => {
 
-  const [frutas, setFrutas] = useState(() => [
-    {
-      id: 1,
-      name: 'goiaba',
-    },
-    {
-      id: 2,
-      name: 'banana',
-    },
-    {
-      id: 3,
-      name: 'abacaxi',
-    }
-  ]);
+  const frutas = useSelector(state => state.FeiraReducer.frutas);
 
-  const [newFrutas, setNewFrutas] = useState(() => [{}]);
+  const dispatch = useDispatch();
 
-  const addFrutas = () => {
-    let addNewfruta = {
-      id: Math.floor(Math.random() * 100),
-      name: newFrutas,
-    };
-    console.log("addNewfruta", addNewfruta)
-    setFrutas([...frutas, addNewfruta]);
-  }
-
-  const deleteChip = (id) => {
-    setFrutas(frutas.filter(f => f.id !== id))
-  }
-
-  const newID = () => {
-    return Math.floor(Math.Random() * 10000);
-  }
+  const [newFrutas, setNewFrutas] = useState(() => []);
 
   return(
     <div className='app__container'>
@@ -51,6 +24,7 @@ const Feira = () => {
       >
         <TextField
           id="outlined-basic"
+          type='text'
           label="Fruta"
           variant="outlined"
           sx={12}
@@ -58,7 +32,7 @@ const Feira = () => {
         />
         <Fab
           aria-label="add"
-          onClick={() => addFrutas()}
+          onClick={() => dispatch(addFrutaAction(newFrutas))}
           style={{
             width: '55px',
             height: '55px',
@@ -79,7 +53,7 @@ const Feira = () => {
                     color="secondary"
                     size="large"
                     avatar={<Avatar>{f.id}</Avatar>}
-                    onDelete={() => deleteChip(f.id)}
+                    onDelete={() => dispatch(deleteFrutaAction(f.id))}
                     deleteIcon={<FaTrash />}
                   />
                 </>
