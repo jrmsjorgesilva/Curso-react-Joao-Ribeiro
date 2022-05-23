@@ -8,10 +8,11 @@ const INITIAL_COUNT = {
 function CounterReducer(state = INITIAL_COUNT, action) {
   switch (action.type) {
     case 'INCREMENT':
-      return { count: state.count + 1 }
+      console.log("action.payload", action.payload)
+      return { count: state.count + action.payload }
       break;
     case 'DECREMENT':
-      return { count: state.count - 1 }
+      return { count: state.count - action.payload }
       break;
     case 'CLEAN':
       return { count: state.count * 0 }

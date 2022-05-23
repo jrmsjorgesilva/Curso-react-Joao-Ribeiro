@@ -6,15 +6,17 @@ export const DECREMENT = 'DECREMENT'
 export const CLEAN = 'CLEAN'
 
 // Actions
-const incrementAction = () => {
+const incrementAction = (value) => {
   return {
-      type: INCREMENT
+      type: INCREMENT,
+      payload: value
   }
 }
 
-const decrementAction = () => {
+const decrementAction = (value) => {
   return {
-    type: DECREMENT
+    type: DECREMENT,
+    payload: value
   }
 }
 
