@@ -20,20 +20,19 @@ const Feira = () => {
     }
   ]);
 
-  console.log("FRUTAS", frutas);
-
   const [newFrutas, setNewFrutas] = useState(() => [{}]);
 
   const addFrutas = () => {
-    console.log("FRUTAS", frutas);
-    console.log("NEWFRUTAS", newFrutas);
-    console.log("...FRUTAS", ...frutas);
-    console.log("...NEWFRUTAS", ...newFrutas);
-    const addNewfruta = {
-      id: Math.floor(Math.Random() * 10000),
-      name: newFrutas
-    }
-    setFrutas([...frutas, { id: 4, name: 'fdjfnjdfndjf' }]);
+    let addNewfruta = {
+      id: Math.floor(Math.random() * 100),
+      name: newFrutas,
+    };
+    console.log("addNewfruta", addNewfruta)
+    setFrutas([...frutas, addNewfruta]);
+  }
+
+  const deleteChip = (id) => {
+    setFrutas(frutas.filter(f => f.id !== id))
   }
 
   const newID = () => {
@@ -70,7 +69,7 @@ const Feira = () => {
           <FaPlus />
         </Fab>
         <ul>
-          {
+          {frutas.length > 0 ?
               frutas.map(f =>
                 <>
                   <Chip
@@ -79,9 +78,13 @@ const Feira = () => {
                     variant="outlined"
                     color="secondary"
                     size="large"
-                    avatar={<Avatar>F</Avatar>}
+                    avatar={<Avatar>{f.id}</Avatar>}
+                    onDelete={() => deleteChip(f.id)}
+                    deleteIcon={<FaTrash />}
                   />
                 </>
+              ) : (
+                'Não há nenhuma fruta na cesta'
               )
           }
 
