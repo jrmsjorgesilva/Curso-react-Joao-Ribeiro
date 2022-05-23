@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux'
+import { combineReducers, createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import ComentsReducer from '../Reducers/ComentsReducer'
 import ContadorReducer from '../Reducers/CounterReducer'
 import InvertextoReducer from '../Reducers/InvertextoReducer'
@@ -17,6 +18,6 @@ const store = createStore(combineReducers(
     FixitReducer,
     FeiraReducer,
   }
-));
+), applyMiddleware(thunk));
 
 export default store
