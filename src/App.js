@@ -1,5 +1,5 @@
 import React from 'react'
-import Coments from './componentes/Coments'
+import Comments from './componentes/Comments'
 import DadosClientes from './componentes/DadosClientes'
 import Contador from './componentes/Contador'
 import Invertexto from './componentes/Invertexto'
@@ -51,7 +51,7 @@ const App = () => {
             </Route>
             <Route
               path='/comments'
-              element={<Coments />}
+              element={<Comments />}
             >
             </Route>
             <Route

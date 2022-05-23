@@ -1,6 +1,6 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import ComentsReducer from '../Reducers/ComentsReducer'
+import CommentsReducer from '../Reducers/CommentsReducer'
 import ContadorReducer from '../Reducers/CounterReducer'
 import InvertextoReducer from '../Reducers/InvertextoReducer'
 import CardsReducer from '../Reducers/CardsReducer'
@@ -11,7 +11,7 @@ import BankAccountReducer from '../Reducers/BankAccountReducer'
 
 const store = createStore(combineReducers(
   {
-    ComentsReducer,
+    CommentsReducer,
     ContadorReducer,
     CardsReducer,
     InvertextoReducer,
