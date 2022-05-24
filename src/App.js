@@ -13,6 +13,7 @@ import SocialWidget from './componentes/SocialWidget'
 import Feira from './componentes/Feira'
 import Fixit from './componentes/Fixit'
 import BankAccount from './componentes/BankAccount'
+import UserFetch from './componentes/UserFetch'
 import Footer from './componentes/Footer'
 // IMPORTS REDUX
 import { Provider } from 'react-redux'
@@ -82,6 +83,11 @@ const App = () => {
             <Route
               path='/bankaccount'
               element={<BankAccount />}
+            >
+            </Route>
+            <Route
+              path='/userfetch'
+              element={<UserFetch />}
             >
             </Route>
             <Route
