@@ -14,6 +14,7 @@ import Feira from './componentes/Feira'
 import Fixit from './componentes/Fixit'
 import BankAccount from './componentes/BankAccount'
 import UserFetch from './componentes/UserFetch'
+import ShoppingList from './componentes/ShoppingList/ShoppingList'
 import Footer from './componentes/Footer'
 // IMPORTS REDUX
 import { Provider } from 'react-redux'
@@ -88,6 +89,11 @@ const App = () => {
             <Route
               path='/userfetch'
               element={<UserFetch />}
+            >
+            </Route>
+            <Route
+              path='/shoppinglist'
+              element={<ShoppingList />}
             >
             </Route>
             <Route
