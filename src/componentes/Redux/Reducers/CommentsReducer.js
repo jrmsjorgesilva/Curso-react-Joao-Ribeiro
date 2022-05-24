@@ -2,14 +2,21 @@ import { ADD_COMMENT, DELETE_COMMENT, APROVE_COMMENT, CLEAN_COMMENT } from '../A
 
 // initializer
 const INITIAL_COMMENTS = {
-  comment: 'Nenhum Comentário'
+  comment: [
+    {
+      id: 1,
+      title: 'titulo do comentario',
+      content: 'conteudo do comentario',
+      autor: 'autor do comentario'
+    }
+  ]
 }
 
 // reducer
 function CommentsReducer(state = INITIAL_COMMENTS, action) {
   switch (action.type) {
     case ADD_COMMENT:
-      return { comment: 'Adicionar comentário' }
+      return { comment: action.payload }
     case DELETE_COMMENT:
       return { comment: 'Deletar comentário' }
     case APROVE_COMMENT:

@@ -1,65 +1,109 @@
 import React, { useState } from 'react'
 import Comment from './Comment'
 import { useSelector, useDispatch } from 'react-redux'
-import { actionAddComment, aproveComment, deleteComment, cleanComment } from './Redux/Actions/CommentsActions'
+import { addCommentAction, aproveCommentAction, deleteCommentAction, cleanCommentAction } from './Redux/Actions/CommentsActions'
 import { Button, Box, Stack, TextField } from '@mui/material'
+import { FaHeart, FaTrash, FaEdit, FaLike, FalikeAlt } from 'react-icons/fa'
 
 const Comments = () => {
 
-  const comment = useSelector(state => state.CommentsReducer.comment);
+  const ReduxComment = useSelector(state => state.CommentsReducer.comment);
+
+  console.log(ReduxComment);
 
   const dispatch = useDispatch();
 
-  const insereComentario = () => {
-    console.log("Comentario deletado -> ", dispatch(deleteComment()));
+  const [inputAutor, setInputAutor] = useState(() => '');
+  const [inputTitle, setInputTitle] = useState(() => '');
+  const [inputContent, setInputContent] = useState(() => '');
+
+  // const [comments, setComments] = useState(() => [
+  //   {
+  //     id: 1,
+  //     title: 'titulo do comentario',
+  //     content: 'conteudo do comentario',
+  //     autor: 'autor do comentario'
+  //   }
+  // ])
+
+  const insertComment = (e) => {
+    e.preventDefault();
+
+    // testar se os campos estão preenchidos
+    if (inputAutor === '' || inputTitle === '' || inputContent === '') {
+      handleError('campos estão vazios');
+    }
+
+    // cria o payload array objetos
+    const newComment = {
+      id: Math.floor(Math.random() * 1000),
+      title: inputTitle,
+      content: inputContent,
+      autor: inputAutor
+    }
+
+    ReduxComment.push(newComment);
+
+    console.log("ReduxComment-> ", ReduxComment);
+
+    dispatch(addCommentAction(ReduxComment));
+
+    
+
   }
 
-  const handleText = (e) => {
-    console.log("dsfdsdfsd");
-  }
-
-  const handleText2 = (e) => {
-    console.log("dsfdsdfsd");
+  const handleError = (err) => {
+    alert(err);
+    return false;
   }
 
   return(
     <div className='app__container'>
       <h1 className='app__title center'>Insira um comentário</h1>
-      <small className='center'>seja gentil</small>
+      <small className='center'>
+        Seja Gentil  
+        <FaHeart style={{ margin: '-2px 6px', color: 'red' }} />
+      </small>
       <Box sx={{ width: '100%', margin: '20px 0px' }}>
         <Stack spacing={4}>
           <TextField 
-            id="outlined-basic" 
             type="text" 
-            placeholder="autor" 
             label="Autor" 
             variant="outlined"
-            onChange={(e) => handleText(e.target.value)} 
+            onChange={(e) => setInputAutor(e.target.value)} 
+          />
+          <TextField  
+            type="text" 
+            label="Titulo" 
+            variant="outlined"
+            onChange={(e) => setInputTitle(e.target.value)} 
           />
           <TextField 
-            id="outlined-basic" 
             type="text" 
             placeholder="Diga o que está pensando" 
             label="Comentario" 
             multiline
             rows={4}
             variant="outlined" 
-            onChange={(e) => handleText2(e.target.value)} 
+            onChange={(e) => setInputContent(e.target.value)} 
           />
           <Button
             variant='contained' 
             className='app__btn' 
             size='large'
-            onClick={() => dispatch(deleteComment())}
+            onClick={(e) => insertComment(e)}
             
           >
             Enviar
           </Button>
-          <Comment 
-            title='titulo 1' 
-            text='texto 1' 
-            autor='autor 1'
-          />
+          {ReduxComment.map(c => 
+            <Comment 
+              key={c.id}
+              title={c.title} 
+              content={c.content} 
+              autor={c.autor}
+            />
+          )}
         </Stack>
       </Box>
     </div>

@@ -5,21 +5,21 @@ const APROVE_COMMENT = 'APROVE_COMMENT'
 const CLEAN_COMMENT = 'CLEAN_COMMENT'
 
 // actions
-const actionAddComment = () => {
+const addCommentAction = (value) => {
   return {
-    type: ADD_COMMENT
-    // payload
+    type: ADD_COMMENT,
+    payload: value
   }
 }
 
-const aproveComment = () => {
+const aproveCommentAction = () => {
   return {
     type: APROVE_COMMENT
     // payload
   }
 }
 
-const deleteComment = () => {
+const deleteCommentAction = () => {
   return {
     type: DELETE_COMMENT
     // payload
@@ -27,7 +27,7 @@ const deleteComment = () => {
 }
 
 
-const cleanComment = () => {
+const cleanCommentAction = () => {
   return {
     type: CLEAN_COMMENT
     // payload
@@ -39,8 +39,8 @@ export {
   DELETE_COMMENT,
   APROVE_COMMENT,
   CLEAN_COMMENT,
-  actionAddComment,
-  aproveComment,
-  deleteComment,
-  cleanComment,
+  addCommentAction,
+  aproveCommentAction,
+  deleteCommentAction,
+  cleanCommentAction,
 }
