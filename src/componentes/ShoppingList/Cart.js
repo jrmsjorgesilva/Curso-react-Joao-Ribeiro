@@ -5,7 +5,7 @@ import { FaShoppingCart } from 'react-icons/fa'
 const Cart = () => {
   return (
     <div>
-        <Stack margin={4} maxWidth={200} marginLeft='auto'>
+        <Stack margin={3} maxWidth={200} marginLeft='auto' >
             <Button 
                 variant="outlined" 
                 startIcon={<FaShoppingCart />}

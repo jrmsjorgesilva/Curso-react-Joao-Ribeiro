@@ -1,21 +1,34 @@
-import React, { useState } from 'react'
-import Comment from './Comment'
+// dependencias
+import React, { useState, useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addCommentAction, aproveCommentAction, deleteCommentAction, cleanCommentAction } from './Redux/Actions/CommentsActions'
+// utils
+import Comment from './Comment'
+// libs components
 import { Button, Box, Stack, TextField } from '@mui/material'
 import { FaHeart, FaTrash, FaEdit, FaLike, FalikeAlt } from 'react-icons/fa'
+// actions creators
+import { 
+  addCommentAction, 
+  aproveCommentAction, 
+  deleteCommentAction, 
+  cleanCommentAction 
+} from './Redux/Actions/CommentsActions'
 
 const Comments = () => {
 
+    // useRef
+    const inputRef = useRef();
+
+    // inputs de texto
+    const [inputAutor, setInputAutor] = useState(() => '');
+    const [inputTitle, setInputTitle] = useState(() => '');
+    const [inputContent, setInputContent] = useState(() => '');
+
+  // useSelector
   const ReduxComment = useSelector(state => state.CommentsReducer.comment);
 
-  console.log(ReduxComment);
-
+  // useDispatch
   const dispatch = useDispatch();
-
-  const [inputAutor, setInputAutor] = useState(() => '');
-  const [inputTitle, setInputTitle] = useState(() => '');
-  const [inputContent, setInputContent] = useState(() => '');
 
   // const [comments, setComments] = useState(() => [
   //   {
@@ -32,6 +45,7 @@ const Comments = () => {
     // testar se os campos estão preenchidos
     if (inputAutor === '' || inputTitle === '' || inputContent === '') {
       handleError('campos estão vazios');
+      return false;
     }
 
     // cria o payload array objetos
@@ -44,11 +58,17 @@ const Comments = () => {
 
     ReduxComment.push(newComment);
 
-    console.log("ReduxComment-> ", ReduxComment);
+    // console.log("ReduxComment-> ", ReduxComment);
 
     dispatch(addCommentAction(ReduxComment));
 
-    
+    // limpa os campos e renderiza o formulario
+    setInputTitle('');
+    setInputContent('');
+    setInputAutor('');
+
+    // volta o foco para o input
+    inputRef.current.focus();
 
   }
 
@@ -67,21 +87,26 @@ const Comments = () => {
       <Box sx={{ width: '100%', margin: '20px 0px' }}>
         <Stack spacing={4}>
           <TextField 
+            autofocus
+            ref={inputRef}
             type="text" 
             label="Autor" 
+            value={inputAutor}
             variant="outlined"
             onChange={(e) => setInputAutor(e.target.value)} 
           />
           <TextField  
             type="text" 
             label="Titulo" 
+            value={inputTitle}
             variant="outlined"
             onChange={(e) => setInputTitle(e.target.value)} 
           />
           <TextField 
             type="text" 
             placeholder="Diga o que está pensando" 
-            label="Comentario" 
+            label="Comentario"
+            value={inputContent}
             multiline
             rows={4}
             variant="outlined" 
@@ -92,18 +117,12 @@ const Comments = () => {
             className='app__btn' 
             size='large'
             onClick={(e) => insertComment(e)}
-            
           >
             Enviar
           </Button>
-          {ReduxComment.map(c => 
-            <Comment 
-              key={c.id}
-              title={c.title} 
-              content={c.content} 
-              autor={c.autor}
-            />
-          )}
+          <Comment 
+            ReduxComment={ReduxComment}
+          />
         </Stack>
       </Box>
     </div>
