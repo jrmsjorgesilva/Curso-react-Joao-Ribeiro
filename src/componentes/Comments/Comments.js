@@ -18,7 +18,7 @@ import {
   aproveCommentAction, 
   deleteCommentAction, 
   cleanCommentAction 
-} from './Redux/Actions/CommentsActions'
+} from '../Redux/Actions/CommentsActions'
 
 const Comments = () => {
 
@@ -49,6 +49,7 @@ const Comments = () => {
   //   }
   // ])
 
+  // ADD
   const insertComment = (e) => {
     e.preventDefault();
 
@@ -70,7 +71,7 @@ const Comments = () => {
 
     // console.log("ReduxComment-> ", ReduxComment);
 
-    dispatch(addCommentAction(ReduxComment));
+    addCommentAction(ReduxComment);
 
     // limpa os campos e renderiza o formulario
     setInputTitle('');
@@ -83,6 +84,11 @@ const Comments = () => {
 
   }
 
+  // DELETE
+  const deleteComment = (id) => {
+    dispatch(deleteCommentAction(id));
+  }
+
   const handleError = (err) => {
     alert(err);
     return false;
@@ -93,7 +99,7 @@ const Comments = () => {
     if (!checked) {
       setInputTitle(() => 'Porque Titulos são difíceis de criar?');
       setInputContent(() => 'Acontece nas melhores famílias: você está lá com a tarefa de escrever um artigo, mas não sabe que nome dar para ele... Esta coleção de títulos que o Fabinho nos disponibiliza de graça é certamente a solução para isto! Estou muito satisfeito');
-      setInputAutor(() => 'MarioMendonça');
+      setInputAutor(() => 'Mario Mendonça');
     }
 
 
@@ -158,6 +164,7 @@ const Comments = () => {
           </Button>
           <Comment 
             ReduxComment={ReduxComment}
+            deleteComment={deleteComment}
           />
         </Stack>
       </Box>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Comments from './componentes/Comments'
+import Comments from './componentes/Comments/Comments'
 import DadosClientes from './componentes/DadosClientes'
 import Contador from './componentes/Contador'
 import Invertexto from './componentes/Invertexto'

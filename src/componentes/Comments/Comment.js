@@ -3,7 +3,7 @@ import { FaTrash, FaEdit, FaThumbsUp, FaThumbsDown, FaUser } from 'react-icons/f
 import { Box, Stack, IconButton, Badge, Card, CardContent, CardActions, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux';
 
-const Comment = ({ ReduxComment }) => {
+const Comment = ({ ReduxComment, deleteComment }) => {
 
   // const API_URL = 'https://jsonplaceholder.typicode.com/comments'
 
@@ -19,18 +19,20 @@ const Comment = ({ ReduxComment }) => {
     
   // }, []);
 
+  const dispatch = useDispatch();
+
   const [like, setLike] = useState(() => JSON.parse(localStorage.getItem('like')) || 0);
   const [dislike, setDislike] = useState(() => JSON.parse(localStorage.getItem('dislike')) || 0);
 
   // like management
   const notificationsLabel = (count) => {
     if (count === 0) {
-      return 'no notifications';
+      return 'Sem notificações';
     }
     if (count > 99) {
-      return 'more than 99 notifications';
+      return 'Acima de 99 notificações';
     }
-    return `${like} notifications`;
+    return `${like} notificações`;
   }
 
   const giveLike = () => {
@@ -53,23 +55,7 @@ const Comment = ({ ReduxComment }) => {
 
           <Card sx={{ margin: '10px 0px' }}>
             <CardContent>
-              <Typography 
-                gutterBottom 
-                variant="h3" 
-                component="div"
-                margin='10px 30px'
-              >
-                {comment.title}
-              </Typography>
-              <Typography 
-                gutterBottom 
-                variant="h5" 
-                component="div"
-                margin='10px 30px'
-                color='#444'
-              >
-                {comment.content}
-              </Typography>
+
               <Typography 
                 gutterBottom 
                 variant="h6" 
@@ -80,10 +66,38 @@ const Comment = ({ ReduxComment }) => {
                 {comment.autor}
               </Typography>
 
+              <Typography 
+                gutterBottom 
+                variant="h3" 
+                component="div"
+                margin='10px 30px'
+              >
+                {comment.title}
+              </Typography>
+
+              <Typography 
+                gutterBottom 
+                variant="h5" 
+                component="div"
+                margin='10px 30px'
+                color='#444'
+              >
+                {comment.content}
+              </Typography>
+
               <CardActions>
                 <IconButton >
                   <Badge>
-                    <FaTrash role='button' style={{ color: 'firebrick', fontSize: '30px', margin: '10px', cursor: 'pointer' }} />
+                    <FaTrash 
+                      role='button' 
+                      style={{ 
+                        color: 'firebrick', 
+                        fontSize: '30px', 
+                        margin: '10px', 
+                        cursor: 'pointer' 
+                      }}
+                      onClick={() => dispatch(deleteComment(comment.id))} 
+                    />
                   </Badge>
                 </IconButton>
                 
