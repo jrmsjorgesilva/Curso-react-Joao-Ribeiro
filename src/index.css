@@ -36,6 +36,14 @@ body {
   text-align: center;
 }
 
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
 .m-auto {
   margin: auto;
 }
@@ -50,6 +58,14 @@ body {
 
 .m-3 {
   margin: 10px;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
 }
 
 .p-1 {

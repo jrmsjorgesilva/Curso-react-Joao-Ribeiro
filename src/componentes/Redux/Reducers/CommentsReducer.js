@@ -2,14 +2,7 @@ import { ADD_COMMENT, DELETE_COMMENT, APROVE_COMMENT, CLEAN_COMMENT } from '../A
 
 // initializer
 const INITIAL_COMMENTS = {
-  comment: [
-    {
-      id: 1,
-      title: 'titulo do comentario',
-      content: 'conteudo do comentario',
-      autor: 'autor do comentario'
-    }
-  ]
+  comment: []
 }
 
 // reducer
