@@ -1,15 +1,15 @@
-import React from 'react'
-
 // action constant
 const INVERTEXTO = 'INVERTEXTO';
 
 // actions
-const actionInvertexto = () => {
+const actionInvertexto = (value) => {
   return {
-    type: INVERTEXTO
+    type: INVERTEXTO,
+    payload: value
   }
 }
 
 export {
-  actionInvertexto
+  INVERTEXTO,
+  actionInvertexto,
 }
