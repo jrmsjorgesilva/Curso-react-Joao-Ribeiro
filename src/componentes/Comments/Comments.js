@@ -9,9 +9,12 @@ import {
   Box, 
   Stack, 
   TextField, 
-  Switch 
+  Switch, 
+  Collapse,
+  Alert, 
+  IconButton
 } from '@mui/material'
-import { FaHeart } from 'react-icons/fa'
+import { FaHeart, FaTimes } from 'react-icons/fa'
 // actions creators
 import { 
   addCommentAction, 
@@ -39,6 +42,10 @@ const Comments = () => {
 
   // switch
   const [checked, setChecked] = useState(() => false);
+
+  // error state
+  const [error, setError] = useState(() => '');
+  const [errorOpen, setErrorOpen] = useState(() => false);
 
   // const [comments, setComments] = useState(() => [
   //   {
@@ -90,7 +97,8 @@ const Comments = () => {
   }
 
   const handleError = (err) => {
-    alert(err);
+    setError(err);
+    setErrorOpen(true);
     return false;
   }
 
@@ -162,6 +170,26 @@ const Comments = () => {
           >
             Enviar
           </Button>
+          <Collapse in={errorOpen}>
+            <Alert
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setErrorOpen(false);
+                  }}
+                >
+                  <FaTimes />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              {error}
+            </Alert>
+          </Collapse>
           <Comment 
             ReduxComment={ReduxComment}
             deleteComment={deleteComment}
