@@ -22,8 +22,31 @@ const NavBar = () => {
 
   // MUI code
 
-  const pages = ['Fetchapp', 'Cards', 'Contador', 'Comments', 'Dadosclientes', 'Invertexto', 'Slides', 'Feira', 'Fixit', 'Bankaccount', 'Userfetch', 'Shoppinglist', 'MarkDownPreviewer'];
-  const settings = ['Sobre', 'Minha Conta', 'Configurações', 'Logout'];
+  // Array com as rotas das páginas
+  const pages = [
+    'Fetchapp', 
+    'Cards', 
+    'Contador', 
+    'Comments', 
+    'Dadosclientes', 
+    'Invertexto', 
+    'Slides', 
+    'Feira', 
+    'Fixit', 
+    'Bankaccount', 
+    'Userfetch', 
+    'Shoppinglist', 
+    'MarkDownPreviewer', 
+    'Randomquotes',
+  ];
+
+  // Array com as configurações da plataforma
+  const settings = [
+    'Sobre', 
+    'Minha Conta', 
+    'Configurações', 
+    'Logout'
+  ];
 
   const [anchorElNav, setAnchorElNav] = useState(() => null);
   const [anchorElUser, setAnchorElUser] = useState(() => null);
