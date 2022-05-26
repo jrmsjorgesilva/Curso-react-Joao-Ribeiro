@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button, Stack} from '@mui/material'
+import { FaArrowLeft, FaUndo, FaArrowRight } from 'react-icons/fa'
 
 const Slides = () => {
 
@@ -48,31 +50,34 @@ const Slides = () => {
   }
 
     return (
-        <div className='app_container'>
-            <div id="navigation" className="text-center">
-                <button
-                  className="app__btn"
+        <div className='app__container'>
+            <Stack sx={{ margin: 'auto', justifyContent: 'center', alignItems: 'center' }} direction='row' spacing={4} className="center">
+                <Button
+                  variant='contained'
+                  endIcon={<FaUndo />}
                   onClick={() => setSlide(0)}
                   disabled={slide === 0 ? disabled : !disabled}
                 >
                   Restart
-                </button>
-                <button
-                  className="app__btn"
+                </Button>
+                <Button
+                  variant='contained'
+                  endIcon={<FaArrowLeft />}
                   onClick={() => prevSlide()}
                   disabled={slide < 1 ? disabled : !disabled}
                 >
                   Prev
-                </button>
-                <button
-                  className="app__btn"
+                </Button>
+                <Button
+                  variant='contained'
+                  endIcon={<FaArrowRight />}
                   onClick={() => nextSlide()}
                   disabled={slide > 3 ? disabled : !disabled}
                 >
                   Next
-                </button>
-            </div>
-            <div id="slide" className="card text-center">
+                </Button>
+            </Stack>
+            <div style={{ margin: '100px auto' }} id="slide" className="card center">
                 <h1 data-testid="title">{slides[slide].title}</h1>
                 <p data-testid="text">{slides[slide].text}</p>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Comments from './componentes/Comments/Comments'
-import DadosClientes from './componentes/DadosClientes'
+import DadosClientes from './componentes/DadosClientes/DadosClientes'
 import Contador from './componentes/Contador'
 import Invertexto from './componentes/Invertexto'
 import Cards from './componentes/Cards'
@@ -36,74 +36,90 @@ const App = () => {
               element={<TodoApp />}
             >
             </Route>
+            
             <Route
               path='/fetchapp'
               element={<FetchApp />}
             >
             </Route>
+            
             <Route
               path='/cards'
               element={<Cards />}
             >
             </Route>
+            
             <Route
               path='/invertexto'
               element={<Invertexto />}
             >
             </Route>
+            
             <Route
               path='/comments'
               element={<Comments />}
             >
             </Route>
+            
             <Route
               path='/contador'
               element={<Contador />}
             >
             </Route>
+            
             <Route
               path='/dadosclientes'
               element={<DadosClientes />}
             >
             </Route>
+            
             <Route
               path='/slides'
               element={<Slides />}
             >
             </Route>
+            
             <Route
               path='/feira'
               element={<Feira />}
             >
             </Route>
+            
             <Route
               path='/fixit'
               element={<Fixit />}
             >
             </Route>
+
             <Route
               path='/bankaccount'
               element={<BankAccount />}
             >
             </Route>
+
             <Route
               path='/userfetch'
               element={<UserFetch />}
             >
             </Route>
+
             <Route
               path='/shoppinglist'
               element={<ShoppingList />}
             >
             </Route>
+
             <Route
               path='*'
               element={<Page404 />}
             >
             </Route>
+
           </Routes>
 
         </Provider>
+
+        <SocialWidget />
 
         <Footer />
 

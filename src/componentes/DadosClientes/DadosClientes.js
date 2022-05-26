@@ -1,8 +1,19 @@
-import React from 'react'
-import dadosClientes from '../dadosClientes/dadosClientes'
+import React, { useState, useEffect } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper  } from '@mui/material'
 
 const DadosClientes = () => {
+
+  const [data, setData] = useState(() => []);
+
+  const API_URL = 'https://jsonplaceholder.typicode.com/users';
+
+  useEffect(() => {
+
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(json => setData(json))
+
+  }, [])
 
   return(
     <div className='app__container'>
@@ -15,20 +26,24 @@ const DadosClientes = () => {
           <TableRow>
             <TableCell>Lista de clientes cadastrados</TableCell>
             <TableCell align="right">ID</TableCell>
+            <TableCell align="right">Nome Usuário</TableCell>
             <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Logradouro</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {dadosClientes.map((row) => (
+          {data.map((row) => (
             <TableRow
-              key={row.nome}
+              key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.nome}
+                {row.name}
               </TableCell>
               <TableCell align="right">{row.id}</TableCell>
+              <TableCell align="right">{row.username}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
+              <TableCell align="right">{row.address.street}</TableCell>
             </TableRow>
           ))}
         </TableBody>

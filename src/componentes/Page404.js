@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Page404 = () => {
 
@@ -7,9 +8,19 @@ const Page404 = () => {
   return(
     <>
       <img
+        width='70%'
+        height='70%'
         src={imgSrc}
-        alt='flyer do evento'
+        alt='Mensagem 404 - página não encontrada'
       />
+      <p>
+        Página Não Encontrada
+      </p>
+      <p style={{ margin: '10px 10px 40px 10px'}}>
+        <Link to='/'>
+          Voltar
+        </Link>
+      </p>
     </>
   )
 }
