@@ -7,16 +7,20 @@ import {
   TableHead, 
   TableRow, 
   Paper, 
-  Button,
   Fab,
   Stack,
   TextField,
+  InputAdornment,
 } from '@mui/material';
-import { FaFirstOrder, FaBackward, FaFingerprint } from 'react-icons/fa'
+import { FaFirstOrder, FaBackward, FaFingerprint, FaSearch } from 'react-icons/fa'
 
 const DadosClientes = () => {
 
   const [data, setData] = useState(() => []);
+
+  const [callFetchAgain, setCallFetchAgain] = useState(() => false);
+
+  const [search, setSearch] = useState(() => '');
 
   const [error, setError] = useState(() => null);
 
@@ -41,7 +45,7 @@ const DadosClientes = () => {
 
     fetchDadosClientes();
 
-  }, [])
+  }, [callFetchAgain])
 
   const reverseData = () => {
     const newData = data.reverse();
@@ -62,6 +66,20 @@ const DadosClientes = () => {
     const newData = data;
     newData.sort((a, b) => a.id - b.id);
     setData([...newData]);
+  }
+
+  // TODO -> corrigir bug para chamar a API assim quye apagar os dados (delay na chamada)
+  const searchData = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+    console.log(search);
+
+    setData(data.filter(item => (item.name).toLowerCase().includes(search.toLowerCase())))
+
+    if (search === '') {
+      setCallFetchAgain(!callFetchAgain)
+    }
+
   }
 
   return(
@@ -104,8 +122,22 @@ const DadosClientes = () => {
       <Stack>
 
         <TextField 
+          autoFocus
           type='text'
-
+          placeholder='Encontre um item específico'
+          defaultValue=''
+          id="input-with-icon-textfield"
+          label="Pesquisar"
+          value={search}
+          onChange={(e) => searchData(e)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <FaSearch />
+              </InputAdornment>
+            ),
+          }}
+          
         />
 
       </Stack>

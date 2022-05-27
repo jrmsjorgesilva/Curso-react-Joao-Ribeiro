@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import { List, ListItem, ListItemButton, ListItemText, Select, MenuItem, Stack } from '@mui/material'
 import { FaTrash, FaSearch, FaStar, FaUser } from 'react-icons/fa'
 
 const UserFetch = () => {
@@ -10,11 +10,7 @@ const UserFetch = () => {
 
     const [select, setSelect] = useState(() => 'users');
 
-    console.log(select)
-
-
     const API_URL = 'https://dummyjson.com/';
-    // const subject = ['quotes', 'users']
 
     useEffect(() => {
 
@@ -58,11 +54,31 @@ const UserFetch = () => {
 
     return(
         <div className='app__container'>
-            <h1 className='app__title center'>Frases Ins Piradoras</h1>
-            <select onChange={(e) => handleChange(e)}>
-                <option value='users'>Users</option>
-                <option value='quotes'>Quotes</option>
-            </select>
+            <h1 className='app__title center'>Sommelier de API</h1>
+            <p className='center'>
+                <small>Escolha uma API para fazer a busca</small>
+            </p>
+            <Stack direction='column' spacing={4} margin={4}>
+                <Select 
+                    labelId="select-label-api"
+                    id="select-api"
+                    value={select}
+                    onChange={(e) => handleChange(e)}
+                >
+                    <MenuItem 
+                        value='users'
+                    >
+                        <FaUser style={{ margin: '0px 15px'}} />
+                        Users
+                    </MenuItem>
+                    <MenuItem 
+                        value='quotes'
+                    >
+                        <FaStar style={{ margin: '0px 15px'}} />
+                        Quotes
+                    </MenuItem>
+                </Select>
+            </Stack>
             {fetchData.map(data => 
                 <>
                     <List key={data.id}>
