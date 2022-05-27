@@ -7,6 +7,7 @@ const FetchApp = () => {
   // state
   const [data, setData] = useState(() => 'Ainda não foram carregados os dados');
   const [error, setError] = useState(() => null)
+  const [param, setParam] = useState(() => '')
 
   // API
   const API_URL = 'https://jsonplaceholder.typicode.com/'
@@ -18,39 +19,37 @@ const FetchApp = () => {
     margin: 0
   }
 
-  // useEffect(() => {
-  //
-  //
-  //
-  // }, []);
+  useEffect(() => {
+  
+    const fetchFilteredData = async (param) => {
 
-  const fetchData = (value) => {
+      const filterData = `${API_URL}${param}`;
+  
+      try {
+        const res = await fetch(filterData);
+        const data = await res.json();
+        setData(JSON.stringify(data));
+        console.log(data);
+        setError(null);
+      } catch (error) {
+        setError(error);
+        console.log(error)
+      }
+    }
+    
+    fetchFilteredData(param);
+  
+  }, [param]);
 
-    const filterData = `${API_URL}${value}`
-    axios.get(filterData)
-    .then(response => {
-      // setData(response.data);
-      setData(JSON.stringify(response.data));
-      // let colectionData = '';
-      // Object.entries(response.data).forEach(([key, value]) => {
-      //   colectionData += (JSON.stringify(key) + ': ' + JSON.stringify(value));
-      // });
-      // setData(colectionData);
-      setError(null);
-    }, error => {
-      setError(error);
-      alert(error);
-    });
 
-  }
 
   return(
     <div className='app__container'>
       <h1 className='app__title center'>Fetch <small>App</small></h1>
       <div>
-        <button className='app__btn' style={btn_fetch} onClick={() => fetchData('users')}>Usuarios</button>
-        <button className='app__btn' style={btn_fetch} onClick={() => fetchData('posts')}>Posts</button>
-        <button className='app__btn' style={btn_fetch} onClick={() => fetchData('comments')}>Comentarios</button>
+        <button className='app__btn' style={btn_fetch} onClick={() => setParam('users')}>Usuarios</button>
+        <button className='app__btn' style={btn_fetch} onClick={() => setParam('posts')}>Posts</button>
+        <button className='app__btn' style={btn_fetch} onClick={() => setParam('comments')}>Comentarios</button>
         <span className=''>
           {data}
         </span>

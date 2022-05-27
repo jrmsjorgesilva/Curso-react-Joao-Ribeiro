@@ -17,21 +17,34 @@ const UserFetch = () => {
     useEffect(() => {
 
         if (select === 'quotes') {
-            fetch(`${API_URL}quotes`)
-            .then(response => response.json())
-            .then(json => {
-                console.log(json.quotes);
-                setFetchData(json.quotes);
-            })
+
+            const fetchQuotes = async () => {
+                try {
+                    const res = await fetch(`${API_URL}quotes`);
+                    const data = await res.json()
+                    setFetchData(data.quotes);
+                    console.log(data)
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            fetchQuotes();
         }
 
         if (select === 'users') {
-            fetch(`${API_URL}users`)
-            .then(response => response.json())
-            .then(json => {
-                console.log(json.users);
-                setFetchData(json.users.map(elem => elem.firstName));
-            })
+            
+            const fetchUsers = async () => {
+                try {
+                    const res = await fetch(`${API_URL}users`);
+                    const data = await res.json();
+                    setFetchData(data.users.map(elem => elem.firstName));
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+
+            fetchUsers();
+            
         }
 
     }, [select])
