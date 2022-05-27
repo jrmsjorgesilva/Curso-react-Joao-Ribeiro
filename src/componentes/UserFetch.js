@@ -83,32 +83,32 @@ const UserFetch = () => {
                 <>
                     <List key={data.id}>
                         <ListItem disablePadding>
-                        <ListItemButton>
-                            {select === 'users' &&
-                                <FaUser 
+                            <ListItemButton>
+                                {select === 'users' &&
+                                    <FaUser 
+                                        role='button' 
+                                        style={{ 
+                                            color: 'gray', 
+                                            margin: '10px' 
+                                        }} 
+                                    />
+                                }
+                                <ListItemText primary={Object.values(data)} />
+                                <FaTrash 
                                     role='button' 
                                     style={{ 
-                                        color: 'gray', 
+                                        color: 'firebrick', 
                                         margin: '10px' 
                                     }} 
                                 />
-                            }
-                            <ListItemText primary={Object.values(data)} />
-                            <FaTrash 
-                                role='button' 
-                                style={{ 
-                                    color: 'firebrick', 
-                                    margin: '10px' 
-                                }} 
-                            />
-                            <FaStar 
-                                role='button' 
-                                style={{ 
-                                    color: '#dcdf00', 
-                                    margin: '10px' 
-                                }} 
-                            />
-                        </ListItemButton>
+                                <FaStar 
+                                    role='button' 
+                                    style={{ 
+                                        color: '#dcdf00', 
+                                        margin: '10px' 
+                                    }} 
+                                />
+                            </ListItemButton>
                         </ListItem>
                     </List>
                 </>
