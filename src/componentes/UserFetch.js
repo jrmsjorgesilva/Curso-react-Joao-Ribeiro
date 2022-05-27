@@ -6,6 +6,8 @@ const UserFetch = () => {
 
     const [fetchData, setFetchData] = useState(() => []);
 
+    const [error, setError] = useState(() => null);
+
     const [select, setSelect] = useState(() => 'users');
 
     console.log(select)
@@ -22,10 +24,10 @@ const UserFetch = () => {
                 try {
                     const res = await fetch(`${API_URL}quotes`);
                     const data = await res.json()
-                    setFetchData(data.quotes);
-                    console.log(data)
+                    setFetchData(data.quotes.map(elem => elem.quote + ' -> ' + elem.author));
+                    setError(null);
                 } catch (err) {
-                    console.log(err);
+                    setError(err);
                 }
             }
             fetchQuotes();
@@ -38,8 +40,9 @@ const UserFetch = () => {
                     const res = await fetch(`${API_URL}users`);
                     const data = await res.json();
                     setFetchData(data.users.map(elem => elem.firstName));
+                    setError(null);
                 } catch (err) {
-                    console.log(err);
+                    setError(err);
                 }
             }
 
@@ -57,8 +60,8 @@ const UserFetch = () => {
         <div className='app__container'>
             <h1 className='app__title center'>Frases Ins Piradoras</h1>
             <select onChange={(e) => handleChange(e)}>
-                <option value='quotes'>Quotes</option>
                 <option value='users'>Users</option>
+                <option value='quotes'>Quotes</option>
             </select>
             {fetchData.map(data => 
                 <>
