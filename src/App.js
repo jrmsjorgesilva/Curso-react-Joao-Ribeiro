@@ -17,6 +17,7 @@ import UserFetch from './componentes/UserFetch'
 import ShoppingList from './componentes/ShoppingList/ShoppingList'
 import MarkDownPreviewer from './componentes/MarkDownPreviewer/MarkDownPreviewer'
 import RandomQuotes from './componentes/RandomQuotes/RandomQuotes'
+import Calculator from './componentes/Calculator/Calculator'
 import Footer from './componentes/Footer'
 // IMPORTS REDUX
 import { Provider } from 'react-redux'
@@ -120,6 +121,12 @@ const App = () => {
             <Route
               path='/randomquotes'
               element={<RandomQuotes />}
+            >
+            </Route>
+
+            <Route
+              path='/calculator'
+              element={<Calculator />}
             >
             </Route>
 

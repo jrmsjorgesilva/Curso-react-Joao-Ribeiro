@@ -38,6 +38,7 @@ const NavBar = () => {
     'Shoppinglist', 
     'MarkDownPreviewer', 
     'Randomquotes',
+    'Calculator',
   ];
 
   // Array com as configurações da plataforma
