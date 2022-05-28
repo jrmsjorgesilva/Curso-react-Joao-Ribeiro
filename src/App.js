@@ -18,6 +18,7 @@ import ShoppingList from './componentes/ShoppingList/ShoppingList'
 import MarkDownPreviewer from './componentes/MarkDownPreviewer/MarkDownPreviewer'
 import RandomQuotes from './componentes/RandomQuotes/RandomQuotes'
 import Calculator from './componentes/Calculator/Calculator'
+import AppDrum from './componentes/DrumDreaming/AppDrum'
 import Footer from './componentes/Footer'
 // IMPORTS REDUX
 import { Provider } from 'react-redux'
@@ -127,6 +128,12 @@ const App = () => {
             <Route
               path='/calculator'
               element={<Calculator />}
+            >
+            </Route>
+
+            <Route
+              path='/AppDrum'
+              element={<AppDrum />}
             >
             </Route>
 
