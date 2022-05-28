@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Output = ({ currentValue}) => {
+const Output = ({ currentValue }) => {
     return (
         <div className="outputScreen" id="display">
             {currentValue}
@@ -8,4 +8,4 @@ const Output = ({ currentValue}) => {
     );
 }
 
-export default Output
+export default Output;

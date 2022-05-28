@@ -12,11 +12,13 @@ const Calculator = () => {
   const endsWithNegativeSign = /\d[x/+‑]{1}‑$/;
 
   // USE STATES
-  const [currentVal, setCurrentVal] = useState(() => 0);
-  const [prevVal, setPrevVal] = useState(() => 0);
+  const [currentVal, setCurrentVal] = useState(() => '0');
+  const [prevVal, setPrevVal] = useState(() => '0');
   const [formula, setFormula] = useState(() => '');
   const [currentSign, setCurrentSign] = useState(() => 'pos');
   const [lastClicked, setLastClicked] = useState(() => '');
+  const [evaluated, setEvaluated] = useState(() => false);
+  
 
   // &&&&&&&&&&&&&&&&&&&&&&&&
   // &&&&&& FUNCTIONS &&&&&&&
@@ -42,120 +44,130 @@ const Calculator = () => {
         .replace(/‑/g, '-')
         .replace('--', '+0+0+0+0+0+0+');
       let answer = Math.round(1000000000000 * eval(expression)) / 1000000000000;
-      this.setState({
-        currentVal: answer.toString(),
-        formula:
-          expression
+      setCurrentVal(answer.toString())
+      setFormula(
+        expression
             .replace(/\*/g, '⋅')
             .replace(/-/g, '‑')
             .replace('+0+0+0+0+0+0+', '‑-')
             .replace(/(x|\/|\+)‑/, '$1-')
             .replace(/^‑/, '-') +
           '=' +
-          answer,
-        prevVal: answer,
-        evaluated: true
-      });
+          answer
+      );
+      setPrevVal(answer);
+      setEvaluated(true);
     }
   }
 
   const handleOperators = (e) => {
-    if (!this.state.currentVal.includes('Limit')) {
+    if (!currentVal.includes('Limit')) {
       const value = e.target.value;
-      const { formula, prevVal, evaluated } = this.state;
-      this.setState({ currentVal: value, evaluated: false });
+      // const { formula, prevVal, evaluated } = this.state;
+      setCurrentVal(value);
+      setEvaluated(false);
+
       if (evaluated) {
-        this.setState({ formula: prevVal + value });
+
+        setFormula(prevVal + value);
+
       } else if (!endsWithOperator.test(formula)) {
-        this.setState({
-          prevVal: formula,
-          formula: formula + value
-        });
+
+        setPrevVal(formula);
+        setFormula(formula + value);
+
       } else if (!endsWithNegativeSign.test(formula)) {
-        this.setState({
-          formula:
-            (endsWithNegativeSign.test(formula + value) ? formula : prevVal) +
-            value
-        });
+
+        setFormula((endsWithNegativeSign.test(formula + value) ? formula : prevVal) + value);
+
       } else if (value !== '‑') {
-        this.setState({
-          formula: prevVal + value
-        });
+
+        setFormula(prevVal + value)
+
       }
     }
   }
 
   const handleNumbers = (e) => {
-    if (!this.state.currentVal.includes('Limit')) {
-      const { currentVal, formula, evaluated } = this.state;
+    if (!currentVal.includes('Limit')) {
+      // const { currentVal, formula, evaluated } = this.state;
       const value = e.target.value;
-      this.setState({ evaluated: false });
+      setEvaluated(false);
+
       if (currentVal.length > 21) {
-        this.maxDigitWarning();
+
+        maxDigitWarning();
+
       } else if (evaluated) {
-        this.setState({
-          currentVal: value,
-          formula: value !== '0' ? value : ''
-        });
+
+        setCurrentVal(value);
+        setFormula(value !== '0' ? value : '')
+
       } else {
-        this.setState({
-          currentVal:
-            currentVal === '0' || isOperator.test(currentVal)
+        setCurrentVal(
+          currentVal === '0' || isOperator.test(currentVal)
               ? value
-              : currentVal + value,
-          formula:
-            currentVal === '0' && value === '0'
-              ? formula === ''
-                ? value
-                : formula
-              : /([^.0-9]0|^0)$/.test(formula)
-              ? formula.slice(0, -1) + value
-              : formula + value
-        });
+              : currentVal + value
+        );
+        setFormula(
+          currentVal === '0' && value === '0'
+          ? formula === ''
+            ? value
+            : formula
+          : /([^.0-9]0|^0)$/.test(formula)
+          ? formula.slice(0, -1) + value
+          : formula + value
+        );
       }
     }
   }
 
   const handleDecimal = () => {
-    if (this.state.evaluated === true) {
-      this.setState({
-        currentVal: '0.',
-        formula: '0.',
-        evaluated: false
-      });
+    if (evaluated === true) {
+
+      setCurrentVal('0.');
+      setFormula('0.');
+      setEvaluated(false)
+
     } else if (
-      !this.state.currentVal.includes('.') &&
-      !this.state.currentVal.includes('Limit')
+
+      !currentVal.includes('.') &&
+      !currentVal.includes('Limit')
+
     ) {
-      this.setState({ evaluated: false });
-      if (this.state.currentVal.length > 21) {
-        this.maxDigitWarning();
+
+      setEvaluated(false);
+
+      if (currentVal.length > 21) {
+
+        maxDigitWarning();
+
       } else if (
-        endsWithOperator.test(this.state.formula) ||
-        (this.state.currentVal === '0' && this.state.formula === '')
+
+        endsWithOperator.test(formula) ||
+        (currentVal === '0' && formula === '')
+
       ) {
-        this.setState({
-          currentVal: '0.',
-          formula: this.state.formula + '0.'
-        });
+
+        setCurrentVal('0.');
+        setFormula(formula + '0.')
+
       } else {
-        this.setState({
-          currentVal: this.state.formula.match(/(-?\d+\.?\d*)$/)[0] + '.',
-          formula: this.state.formula + '.'
-        });
+
+        setCurrentVal(formula.match(/(-?\d+\.?\d*)$/)[0] + '.');
+        setFormula(formula + '.');
+
       }
     }
   }
 
   const initialize = () => {
-    this.setState({
-      currentVal: '0',
-      prevVal: '0',
-      formula: '',
-      currentSign: 'pos',
-      lastClicked: '',
-      evaluated: false
-    });
+    setCurrentVal('0');
+    setPrevVal('0');
+    setFormula('');
+    setCurrentSign('pos');
+    setLastClicked('');
+    setEvaluated(false);
   }
 
   // &&&&&&&&&&&&&&&&&&&&&&&&
@@ -170,11 +182,11 @@ const Calculator = () => {
           <Formula formula={formula.replace(/x/g, '⋅')} />
           <Output currentValue={currentVal} />
           <CalculatorButtons
-            decimal={'handleDecimal'}
-            evaluate={'handleEvaluate'}
-            initialize={'initialize'}
-            numbers={'handleNumbers'}
-            operators={'handleOperators'}
+            decimal={handleDecimal}
+            evaluate={handleEvaluate}
+            initialize={initialize}
+            numbers={handleNumbers}
+            operators={handleOperators}
           />
         </div>
     </div>

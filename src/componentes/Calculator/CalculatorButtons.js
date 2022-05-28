@@ -17,7 +17,7 @@ const CalculatorButtons = ({ numbers, decimal, evaluate, initialize, operators }
         <button
             className="jumbo"
             id="clear"
-            onClick={initialize}
+            onClick={() => initialize()}
             style={clearStyle}
             value="AC"
         >
@@ -25,7 +25,7 @@ const CalculatorButtons = ({ numbers, decimal, evaluate, initialize, operators }
         </button>
         <button
             id="divide"
-            onClick={operators}
+            onClick={(e) => operators(e)}
             style={operatorStyle}
             value="/"
         >
@@ -33,69 +33,69 @@ const CalculatorButtons = ({ numbers, decimal, evaluate, initialize, operators }
         </button>
         <button
             id="multiply"
-            onClick={operators}
+            onClick={(e) => operators(e)}
             style={operatorStyle}
             value="x"
         >
         x
         </button>
-        <button id="seven" onClick={numbers} value="7">
+        <button id="seven" onClick={(e) => numbers(e)} value="7">
         7
         </button>
-        <button id="eight" onClick={numbers} value="8">
+        <button id="eight" onClick={(e) => numbers(e)} value="8">
         8
         </button>
-        <button id="nine" onClick={numbers} value="9">
+        <button id="nine" onClick={(e) => numbers(e)} value="9">
         9
         </button>
         <button
             id="subtract"
-            onClick={operators}
+            onClick={(e) => operators(e)}
             style={operatorStyle}
             value="‑"
         >
         ‑
         </button>
-        <button id="four" onClick={numbers} value="4">
+        <button id="four" onClick={(e) => numbers(e)} value="4">
         4
         </button>
-        <button id="five" onClick={numbers} value="5">
+        <button id="five" onClick={(e) => numbers(e)} value="5">
         5
         </button>
-        <button id="six" onClick={numbers} value="6">
+        <button id="six" onClick={(e) => numbers(e)} value="6">
         6
         </button>
         <button
             id="add"
-            onClick={operators}
+            onClick={(e) => operators(e)}
             style={operatorStyle}
             value="+"
         >
         +
         </button>
-        <button id="one" onClick={numbers} value="1">
+        <button id="one" onClick={(e) => numbers(e)} value="1">
         1
         </button>
-        <button id="two" onClick={numbers} value="2">
+        <button id="two" onClick={(e) => numbers(e)} value="2">
         2
         </button>
-        <button id="three" onClick={numbers} value="3">
+        <button id="three" onClick={(e) => numbers(e)} value="3">
         3
         </button>
         <button
             className="jumbo"
             id="zero"
-            onClick={numbers}
+            onClick={(e) => numbers(e)}
             value="0"
         >
         0
         </button>
-        <button id="decimal" onClick={decimal} value=".">
+        <button id="decimal" onClick={() => decimal()} value=".">
         .
         </button>
         <button
             id="equals"
-            onClick={evaluate}
+            onClick={() => evaluate()}
             style={equalsStyle}
             value="="
         >
