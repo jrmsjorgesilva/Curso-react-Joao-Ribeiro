@@ -8,6 +8,7 @@ import TodoReducer from '../Reducers/TodoReducer'
 import FixitReducer from '../Reducers/FixitReducer'
 import FeiraReducer from '../Reducers/FeiraReducer'
 import BankAccountReducer from '../Reducers/BankAccountReducer'
+import PomodoroReducer from '../Reducers/PomodoroReducer'
 
 const store = createStore(combineReducers(
   {
@@ -19,6 +20,7 @@ const store = createStore(combineReducers(
     FixitReducer,
     FeiraReducer,
     BankAccountReducer,
+    PomodoroReducer,
   }
 ), applyMiddleware(thunk));
 

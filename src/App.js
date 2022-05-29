@@ -18,7 +18,8 @@ import ShoppingList from './componentes/ShoppingList/ShoppingList'
 import MarkDownPreviewer from './componentes/MarkDownPreviewer/MarkDownPreviewer'
 import RandomQuotes from './componentes/RandomQuotes/RandomQuotes'
 import Calculator from './componentes/Calculator/Calculator'
-import Clock from './componentes/Pomodoro/base'
+// import Clock from './componentes/Pomodoro/base'
+import Pomodoro from './componentes/Pomodoro/Pomodoro'
 import Footer from './componentes/Footer'
 // IMPORTS REDUX
 import { Provider } from 'react-redux'
@@ -133,7 +134,7 @@ const App = () => {
 
             <Route
               path='/Pomodoro'
-              element={<Clock />}
+              element={<Pomodoro />}
             >
             </Route>
 

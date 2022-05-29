@@ -2,10 +2,29 @@ import React, { useState, useEffect } from 'react'
 import './Pomodoro.css';
 import { FaTimer, FaClock, FaPlay, FaPlus, FaMinus, FaRestart } from 'react-icons/fa';
 import { Box, Stack, Button } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { 
+    increaseSessionAction, 
+    decreaseSessionAction, 
+    increaseBreakAction, 
+    decreaseBreakAction, 
+    resetAction, 
+} from '../Redux/Actions/PomodoroActions'
 
 const Pomodoro = () => {
 
+    // useSelector e useDispatch - redux
+    const reduxSession = useSelector(state => state.PomodoroReducer.session);
+    const reduxBreak = useSelector(state => state.PomodoroReducer.break);
 
+    console.log('seção', reduxSession);
+    console.log('break', reduxBreak);
+
+    // %%%%%%%%%%
+    // TODO -> REALIZAR INTEGRAÇÃO REDUX -> CORRIGIR BUGS
+    // %%%%%%%%%%
+
+    const dispatch = useDispatch();
 
     // Initialize state
     const [timerState, setTimerState] = useState(() => 'Stopped');
@@ -124,8 +143,10 @@ const Pomodoro = () => {
         if (timerState === "Stopped" && sessionLength < 60) {
             if (timerType === "Session") {
                 setSessionLength(sessionLength + 1);
+                // dispatch(increaseSessionAction());
             } else {
                 setSessionLength(sessionLength + 1);
+                // dispatch(increaseSessionAction());
             }
         }
     }
@@ -155,7 +176,7 @@ const Pomodoro = () => {
                 <div id="session-settings" className="settings">
                     <div className="buttons-and-value">
                         <div id="session-decrement" className="button" onClick={() => onDecreaseSession()}>-</div>
-                        <div id="session-length">{sessionLength}</div>
+                        <div id="session-length">{reduxSession}</div>
                         <div id="session-increment" className="button" onClick={() => onIncreaseSession()}>+</div>
                     </div>
                     <div id="session-label">Session Length</div>
