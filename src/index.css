@@ -84,6 +84,10 @@ body {
   display: block;
 }
 
+.d-none {
+  display: none;
+}
+
 /* comentarios */
 
 .app__input {

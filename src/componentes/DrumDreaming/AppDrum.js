@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PadBank from './PadBank'
-import { Stack, Switch, Slider } from '@mui/material'
+import { Stack, Switch, Slider, Alert } from '@mui/material'
 import { FaVolumeDown, FaVolumeUp, FaMute } from 'react-icons/fa';
 
 const AppDrum = ({}) => {
@@ -203,48 +203,40 @@ const AppDrum = ({}) => {
                     updateDisplay={displayClipName}
                 />
 
-                <div className='logo'>
+                {/* <div className='logo'>
                     <div className='inner-logo '>{'FCC' + String.fromCharCode(160)}</div>
                     <i className='inner-logo fa fa-free-code-camp' />
-                </div>
+                </div> */}
 
                 <div className='controls-container'>
-                    <div className='control'>
-                        <p>Power</p>
-                        <Switch color="primary" />
-                        <div className='select' onClick={powerControl}>
-                            <div className='inner' style={powerSlider} />
-                        </div>
-                    </div>
-                    <FaVolumeDown />
+                    <Alert severity='info' className='center m-3' >
+                        <h1>{display}</h1>
+                    </Alert>
+                    <div >
+                        <FaVolumeDown style={{ margin: '0px 20px', fontSize: '30px' }} />
                         <Slider 
+                            style={{
+                                width: '300px',
+                            }}
                             aria-label="Volume"
-                            max='1'
-                            min='0'
-                            onChange={adjustVolume}
-                            step='0.01'
-                            type='range'
+                            max={1}
+                            min={0}
+                            onChange={(e) => setSliderVal(e.target.value)}
+                            step={0.01}
                             value={sliderVal} 
                         />
-                    <FaVolumeUp />
-                    <p id='display'>{display}</p>
-                    <div className='volume-slider'>
-                        <input
-                            max='1'
-                            min='0'
-                            onChange={adjustVolume}
-                            step='0.01'
-                            type='range'
-                            value={sliderVal}
-                        />
+                        <FaVolumeUp style={{ margin: '0px 20px', fontSize: '30px' }} />
                     </div>
-                    <div className='control'>
-                        <p>Bank</p>
-                        <Switch color="primary" />
-                        <div className='select' onClick={selectBank}>
-                            <div className='inner' style={bankSlider} />
+                    <Stack direction='row' justifyContent='space-between'>
+                        <div className='control'>
+                            <small>{power ? 'Ligado' : 'Desligado'} </small>
+                            <Switch color="primary" defaultChecked onClick={powerControl}/>
                         </div>
-                    </div>
+                        <div className='control'>
+                            <small>{currentPadBankId === 'Heater Kit' ? 'Boom Bap' : 'Piano Beat'} </small>
+                            <Switch color="primary" onClick={selectBank}/>
+                        </div>
+                    </Stack>
                 </div>
             </Stack>
 
